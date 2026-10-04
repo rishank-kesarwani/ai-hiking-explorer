@@ -1,0 +1,46 @@
+{
+  "name": "ai-hiking-explorer-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production Next.js Frontend for AI Hiking Explorer",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "lint": "next lint || true",
+    "test": "jest"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.475.0",
+    "next": "^15.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.6",
+    "typescript": "^5.8.2"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+    "testMatch": ["**/*.spec.ts", "**/*.spec.tsx", "**/*.test.ts", "**/*.test.tsx"],
+    "transform": {
+      "^.+\\.(t|j)sx?$": ["ts-jest", { "tsconfig": { "jsx": "react-jsx" } }]
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^lucide-react$": "<rootDir>/node_modules/lucide-react/dist/cjs/lucide-react.js",
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/test/__mocks__/styleMock.js"
+    },
+    "setupFilesAfterEnv": ["<rootDir>/src/test/setupTests.ts"]
+  }
+}
