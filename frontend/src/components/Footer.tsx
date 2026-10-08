@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { Compass, ShieldAlert, Heart, Github } from 'lucide-react';
+import { ShieldAlert, Heart, Github } from 'lucide-react';
+import { HikingLogo } from './HikingLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -18,23 +19,8 @@ export const Footer: React.FC = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem' }}>
           {/* Col 1 */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.85rem' }}>
-              <div
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <Compass size={20} color="#ffffff" />
-              </div>
-              <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#ffffff' }}>
-                AI HIKING EXPLORER
-              </span>
+            <div style={{ marginBottom: '0.85rem' }}>
+              <HikingLogo size={36} showText={true} />
             </div>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               Production AI outdoor expedition intelligence. Discover trails, plan paced hiking itineraries, check live forecasts, and pack smart.

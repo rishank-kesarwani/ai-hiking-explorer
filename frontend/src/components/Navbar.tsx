@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
+import { HikingLogo } from './HikingLogo';
 import {
   Compass,
   MapPin,
@@ -46,29 +47,8 @@ export const Navbar: React.FC = () => {
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
         {/* Brand Logo */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-          <div
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '12px',
-              background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 14px rgba(16, 185, 129, 0.4)',
-            }}
-          >
-            <Compass size={24} color="#ffffff" />
-          </div>
-          <div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#ffffff' }}>
-              AI HIKING <span style={{ color: '#10b981' }}>EXPLORER</span>
-            </div>
-            <div style={{ fontSize: '0.675rem', color: 'var(--text-muted)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-              Smart Trail Discovery
-            </div>
-          </div>
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <HikingLogo size={42} showText={true} />
         </Link>
 
         {/* Desktop Navigation */}

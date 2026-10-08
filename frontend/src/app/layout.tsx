@@ -21,7 +21,14 @@ export const metadata: Metadata = {
     'elevation profile',
     'hiking packing list',
   ],
-  authors: [{ name: 'Rishank Kesarwani' }],
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   openGraph: {
     title: 'AI Hiking Explorer',
     description: 'AI-Powered Trail Discovery & Expedition Planning',

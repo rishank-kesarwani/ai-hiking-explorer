@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+
+    <!-- Mountain Gradient (Back) -->
+    <linearGradient id="mountBackGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+
+    <!-- Mountain Gradient (Front) -->
+    <linearGradient id="mountFrontGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+
+    <!-- Trail Gradient -->
+    <linearGradient id="trailGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- AI Star Glow -->
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#34d399" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Squircle Container -->
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#bgGrad)" stroke="#10b981" stroke-width="2" stroke-opacity="0.5" />
+
+  <!-- Background Mountain (Left/Secondary) -->
+  <polygon points="12,48 26,20 40,48" fill="url(#mountBackGrad)" opacity="0.85" />
+  <!-- Left Snow Cap -->
+  <polygon points="26,20 30,28 26,26 22,28" fill="#ffffff" opacity="0.95" />
+
+  <!-- Foreground Mountain (Right/Primary Peak) -->
+  <polygon points="24,48 42,12 56,48" fill="url(#mountFrontGrad)" />
+  <!-- Right Snow Cap -->
+  <polygon points="42,12 47,23 42,20 37,23" fill="#ffffff" opacity="0.95" />
+
+  <!-- Winding Trail Line Cutting Across -->
+  <path d="M12,50 Q28,45 33,36 T42,22" fill="none" stroke="url(#trailGrad)" stroke-width="3.5" stroke-linecap="round" />
+  <circle cx="13" cy="50" r="2.5" fill="#fbbf24" />
+
+  <!-- Beacon Pulse Aura -->
+  <circle cx="42" cy="12" r="10" fill="url(#starGlow)" />
+
+  <!-- 4-Point AI Spark Beacon -->
+  <path d="M42,6 Q42,12 48,12 Q42,12 42,18 Q42,12 36,12 Q42,12 42,6 Z" fill="#ffffff" />
+  <circle cx="42" cy="12" r="1.5" fill="#38bdf8" />
+</svg>

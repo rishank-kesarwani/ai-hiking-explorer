@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" width="280" height="64" fill="none">
+  <defs>
+    <linearGradient id="logoBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="logoMountBack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+    <linearGradient id="logoMountFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="logoTrail" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <radialGradient id="logoStarGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#34d399" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Logo Emblem Icon (Left) -->
+  <g transform="translate(4, 4)">
+    <rect x="0" y="0" width="56" height="56" rx="15" fill="url(#logoBgGrad)" stroke="#10b981" stroke-width="1.8" stroke-opacity="0.6" />
+    <!-- Mountain 1 -->
+    <polygon points="10,44 24,18 38,44" fill="url(#logoMountBack)" opacity="0.85" />
+    <polygon points="24,18 28,25 24,23 20,25" fill="#ffffff" opacity="0.95" />
+
+    <!-- Mountain 2 -->
+    <polygon points="22,44 38,11 50,44" fill="url(#logoMountFront)" />
+    <polygon points="38,11 43,21 38,18 33,21" fill="#ffffff" opacity="0.95" />
+
+    <!-- Trail -->
+    <path d="M10,46 Q26,41 30,33 T38,20" fill="none" stroke="url(#logoTrail)" stroke-width="3" stroke-linecap="round" />
+    <circle cx="10.5" cy="46" r="2.2" fill="#fbbf24" />
+
+    <!-- Beacon -->
+    <circle cx="38" cy="11" r="9" fill="url(#logoStarGlow)" />
+    <path d="M38,5 Q38,11 44,11 Q38,11 38,17 Q38,11 32,11 Q38,11 38,5 Z" fill="#ffffff" />
+    <circle cx="38" cy="11" r="1.5" fill="#38bdf8" />
+  </g>
+
+  <!-- Typography (Right) -->
+  <text x="74" y="29" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="20" letter-spacing="-0.5" fill="#ffffff">
+    AI HIKING <tspan fill="url(#textGrad)">EXPLORER</tspan>
+  </text>
+  <text x="75" y="46" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="10" letter-spacing="1.5" fill="#94a3b8">
+    SMART EXPEDITION &amp; TRAILS
+  </text>
+</svg>
