@@ -252,10 +252,10 @@ function DiscoverContent() {
             </select>
           </div>
 
-          {/* Max Distance Slider */}
+          {/* Max Distance of Trek Slider */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.4rem' }}>
-              <span>Max Distance</span>
+              <span>Max Distance of Trek</span>
               <strong style={{ color: '#f8fafc' }}>{maxDistance} km</strong>
             </div>
             <input
