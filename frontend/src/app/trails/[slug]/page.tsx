@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, use } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Trail, WeatherForecast, FitnessLevel } from '../../../lib/types';
 import { api } from '../../../lib/api';
@@ -225,10 +226,13 @@ export default function TrailDetailsPage({
           marginBottom: '2rem',
         }}
       >
-        <img
+        <Image
           src={trail.images?.[0] || 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'}
           alt={trail.title}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
+          style={{ objectFit: 'cover' }}
         />
         <div
           style={{

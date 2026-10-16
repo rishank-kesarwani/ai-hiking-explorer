@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Trail } from '../lib/types';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -77,6 +78,7 @@ export const TrailCard: React.FC<TrailCardProps> = ({
     'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80';
   const displayImage =
     trail.images && trail.images.length > 0 ? trail.images[0] : fallbackImage;
+  const [imgSrc, setImgSrc] = useState(displayImage);
 
   const durationHours = (trail.estimatedDurationMin / 60).toFixed(1);
 
@@ -84,16 +86,17 @@ export const TrailCard: React.FC<TrailCardProps> = ({
     <div className="glass-card glass-card-hover" style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       {/* Image & Overlay */}
       <Link href={`/trails/${trail.slug || trail._id}`} style={{ position: 'relative', display: 'block', height: '190px' }}>
-        <img
-          src={displayImage}
+        <Image
+          src={imgSrc}
           alt={trail.title}
+          fill
+          unoptimized
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
           style={{
-            width: '100%',
-            height: '100%',
             objectFit: 'cover',
             transition: 'transform 0.5s ease',
           }}
-          loading="lazy"
+          onError={() => setImgSrc(fallbackImage)}
         />
         <div
           style={{
