@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#080c14" />
+      <stop offset="60%" stop-color="#0d1b2a" />
+      <stop offset="100%" stop-color="#062e24" />
+    </linearGradient>
+    <linearGradient id="mountBack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#042f2e" />
+    </linearGradient>
+    <linearGradient id="mountMid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#064e3b" />
+    </linearGradient>
+    <linearGradient id="mountFront" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="trailGold" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+    <radialGradient id="starRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#10b981" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#0d1b2a" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="gridOverlay" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="800" height="500" fill="url(#skyGrad)" />
+
+  <!-- Stars / Ambient Particles -->
+  <circle cx="120" cy="80" r="1.5" fill="#ffffff" opacity="0.6" />
+  <circle cx="260" cy="60" r="1" fill="#ffffff" opacity="0.4" />
+  <circle cx="680" cy="90" r="1.5" fill="#ffffff" opacity="0.5" />
+  <circle cx="730" cy="140" r="1" fill="#ffffff" opacity="0.3" />
+  <circle cx="340" cy="110" r="1.5" fill="#38bdf8" opacity="0.7" />
+
+  <!-- Topographic Contour Lines -->
+  <path d="M-50,320 Q200,280 400,310 T850,290" stroke="#10b981" stroke-width="1" stroke-opacity="0.12" fill="none" />
+  <path d="M-50,360 Q220,310 440,350 T850,320" stroke="#10b981" stroke-width="1" stroke-opacity="0.1" fill="none" />
+  <path d="M-50,400 Q240,350 480,390 T850,350" stroke="#10b981" stroke-width="1" stroke-opacity="0.08" fill="none" />
+
+  <!-- Distant Mountain Ridge -->
+  <polygon points="40,420 180,240 320,420" fill="url(#mountBack)" opacity="0.7" />
+  <polygon points="180,240 210,280 180,270 150,280" fill="#ffffff" opacity="0.8" />
+
+  <polygon points="480,450 620,200 780,450" fill="url(#mountBack)" opacity="0.6" />
+  <polygon points="620,200 655,245 620,235 585,245" fill="#ffffff" opacity="0.7" />
+
+  <!-- Midground Peak -->
+  <polygon points="200,460 380,180 560,460" fill="url(#mountMid)" opacity="0.9" />
+  <polygon points="380,180 415,230 380,220 345,230" fill="#ffffff" opacity="0.95" />
+
+  <!-- Foreground Mountain Peak -->
+  <polygon points="320,500 480,140 660,500" fill="url(#mountFront)" />
+  <polygon points="480,140 520,200 480,185 440,200" fill="#ffffff" opacity="0.98" />
+
+  <!-- Winding Trail Line -->
+  <path d="M120,500 Q300,450 360,370 T480,230" fill="none" stroke="url(#trailGold)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="8 6" />
+  <circle cx="120" cy="500" r="4" fill="#fbbf24" />
+
+  <!-- Summit Beacon Glow -->
+  <circle cx="480" cy="140" r="40" fill="url(#starRadial)" />
+  <path d="M480,115 Q480,140 505,140 Q480,140 480,165 Q480,140 455,140 Q480,140 480,115 Z" fill="#ffffff" />
+  <circle cx="480" cy="140" r="3.5" fill="#38bdf8" />
+
+  <!-- Ground Overlay Gradient -->
+  <rect width="800" height="500" fill="url(#gridOverlay)" />
+
+  <!-- Subtle Emblem Badge -->
+  <g transform="translate(40, 420)">
+    <rect x="0" y="0" width="180" height="42" rx="10" fill="#090e17" fill-opacity="0.8" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.4" />
+    <text x="16" y="26" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="12" fill="#10b981" letter-spacing="1.5">
+      AI HIKING EXPLORER
+    </text>
+  </g>
+</svg>

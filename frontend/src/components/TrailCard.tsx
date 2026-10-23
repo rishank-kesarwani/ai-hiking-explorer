@@ -76,6 +76,7 @@ export const TrailCard: React.FC<TrailCardProps> = ({
 
   const fallbackImage =
     'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80';
+  const staticFallback = '/images/trail-placeholder.svg';
   const displayImage =
     trail.images && trail.images.length > 0 ? trail.images[0] : fallbackImage;
   const [imgSrc, setImgSrc] = useState(displayImage);
@@ -96,7 +97,13 @@ export const TrailCard: React.FC<TrailCardProps> = ({
             objectFit: 'cover',
             transition: 'transform 0.5s ease',
           }}
-          onError={() => setImgSrc(fallbackImage)}
+          onError={() => {
+            if (imgSrc !== fallbackImage && imgSrc !== staticFallback) {
+              setImgSrc(fallbackImage);
+            } else if (imgSrc !== staticFallback) {
+              setImgSrc(staticFallback);
+            }
+          }}
         />
         <div
           style={{

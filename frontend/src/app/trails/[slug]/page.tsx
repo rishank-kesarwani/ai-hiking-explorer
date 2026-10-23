@@ -57,6 +57,8 @@ export default function TrailDetailsPage({
   const [gearChecklist, setGearChecklist] = useState<any | null>(null);
   const [isOvernightCamping, setIsOvernightCamping] = useState(false);
   const [packedItems, setPackedItems] = useState<Record<string, boolean>>({});
+  const [heroImgOverride, setHeroImgOverride] = useState<string | null>(null);
+  const [isHeroUnoptimized, setIsHeroUnoptimized] = useState(false);
 
   useEffect(() => {
     const fetchTrailAndData = async () => {
@@ -226,14 +228,36 @@ export default function TrailDetailsPage({
           marginBottom: '2rem',
         }}
       >
-        <Image
-          src={trail.images?.[0] || 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80'}
-          alt={trail.title}
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
-          style={{ objectFit: 'cover' }}
-        />
+        {(() => {
+          const fallbackHero =
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80';
+          const staticHero = '/images/trail-placeholder.svg';
+          const heroSrc = heroImgOverride || trail.images?.[0] || fallbackHero;
+
+          return (
+            <Image
+              src={heroSrc}
+              alt={trail.title}
+              fill
+              priority
+              unoptimized={isHeroUnoptimized || heroSrc === staticHero}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
+              style={{ objectFit: 'cover' }}
+              onError={() => {
+                if (!isHeroUnoptimized) {
+                  // Fallback 1: If Vercel transformation fails (e.g., quota exceeded HTTP 402/500), bypass optimizer and load direct from CDN
+                  setIsHeroUnoptimized(true);
+                } else if (heroSrc !== fallbackHero && heroSrc !== staticHero) {
+                  // Fallback 2: If primary remote URL failed, try standard fallback remote photo
+                  setHeroImgOverride(fallbackHero);
+                } else if (heroSrc !== staticHero) {
+                  // Fallback 3: Immutable local vector banner safeguard (never fails)
+                  setHeroImgOverride(staticHero);
+                }
+              }}
+            />
+          );
+        })()}
         <div
           style={{
             position: 'absolute',

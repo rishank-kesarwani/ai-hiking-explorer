@@ -88,6 +88,41 @@ This project incorporates the 28 production fixes from the Sports Tracker baseli
 
 ---
 
+## 🖼️ Vercel Image Optimization & Quota Preservation Architecture
+
+To operate within Vercel's included team Image Optimization allowance (5,000 monthly transformations shared across multiple production domains), the frontend implements an engineering strategy that prevents quota exhaustion without sacrificing Core Web Vitals, mobile responsiveness, or visual aesthetics:
+
+### 1. Architectural Strategy
+* **Selective Bypassing for Repeated Grids (`TrailCard`)**:
+  * Repeated card grids (Discover, Nearby, Recommendations, Featured, Favorites) render up to 30+ items per view.
+  * Image sources (`images.unsplash.com`) are already served from an optimized global CDN with fixed query parameters (`auto=format&fit=crop&w=800&q=80`).
+  * `TrailCard` uses Next.js `<Image unoptimized={true} />`, completely bypassing Vercel's `/_next/image` transformation charges while retaining responsive aspect ratios, layout stability, and lazy loading.
+* **Preserved Optimization for High-Impact LCP Asset (`trails/[slug]`)**:
+  * The single above-the-fold Trail Hero Banner retains full Next.js edge optimization with `priority`, `fill`, and responsive `sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"`.
+* **Zero-Transformation Vector Assets**:
+  * Brand emblem (`HikingLogo.tsx`), browser tab icons (`favicon.svg`, `icon.svg`), and application logo (`logo.svg`) are pure SVGs, incurring zero transformation cost.
+* **Edge Cache TTL Extension (`minimumCacheTTL: 2678400`)**:
+  * Extended from Next.js 60-second default to **31 days**. Transformed assets are cached at Vercel's edge network, ensuring repeat visitors hit the edge cache (`x-vercel-cache: HIT`) instead of triggering new billable transformations.
+* **Variant & Format Bounding**:
+  * `formats: ['image/webp']` avoids duplicate parallel AVIF transformations.
+  * `deviceSizes: [640, 768, 1080, 1280]` matches `.container` max width (`1280px`), eliminating wasteful 1920, 2048, and 3840 transformations on desktop displays.
+  * `imageSizes: [64, 128, 256, 384]` compacts smaller responsive thumbnail buckets.
+  * `qualities: [75]` restricts quality permutations.
+
+### 2. Quota-Exceeded Resilience & Multi-Tier Fallbacks
+If Vercel's monthly transformation quota is reached (resulting in HTTP 402/500 errors from `/_next/image`) or an external CDN photo is deleted:
+1. **Tier 1 (Transformation Failover)**: If `/_next/image` fails, the hero component automatically switches to `unoptimized={true}`, instantly fetching directly from the source CDN.
+2. **Tier 2 (Remote Fallback)**: If the primary photo URL returns 404, the component smoothly falls back to a verified remote landscape photo.
+3. **Tier 3 (Immutable Local Static Fallback)**: If external networks or CDNs fail entirely, both `TrailCard` and the hero banner fall back to the pre-optimized local vector asset `/images/trail-placeholder.svg`. Broken image boxes are completely prevented.
+
+### 3. Guidelines for Adding New Assets
+* **Small Icons & Logos**: Always use inline SVGs, Lucide icons, or static files in `public/` marked `unoptimized`.
+* **External Provider Photos**: Where the provider already provides CDN resizing (e.g. Unsplash, Cloudinary, Imgix), use `unoptimized={true}` for list/card views.
+* **Hero/Banner Photography**: Use Next.js `<Image />` without `unoptimized`, always specifying accurate `sizes` matching the CSS container, and ensure fallback handlers are attached.
+* **Static Graphics**: Place pre-compressed WebP or SVG files in `public/` and serve directly.
+
+---
+
 ## 📂 Repository Structure
 
 ```
